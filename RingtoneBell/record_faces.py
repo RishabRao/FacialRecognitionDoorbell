@@ -1,23 +1,33 @@
-import cv2
-import numpy as np
-import sqlite3
+import cv2  # Imported external camera vision library to help with camera processing
+import numpy as np  # Imported external math library to help with arrays
+import sqlite3  # Imported external SQL handling library for databases
 import os
 
 
 def main():
+    """
+    This is the method that would run if record_faces was imported or ran individually
+    :return: void
+    """
     pass
 
 
 def record_faces():
+    """
+    This is the method used for recording faces. It takes 20 pictures of the individuals face
+    and stores it in a a folder for future reading.
+    :return: void
+    """
     database = sqlite3.connect('database.db')
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')  # Created the Haarcascade used for
+    # recognition and training of faces
 
     if not os.path.exists('./dataset'):
         os.makedirs('./dataset')
 
     cursor = database.cursor()
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)  # Started Video Capture
 
     name = input("What is your name?: ")
     cursor.execute('INSERT INTO users (name) VALUES (?)', (name,))
@@ -44,4 +54,4 @@ def record_faces():
     database.close()
     cv2.waitKey(1000)
     cv2.destroyAllWindows()
-    return
+
