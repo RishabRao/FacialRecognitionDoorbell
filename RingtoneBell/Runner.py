@@ -15,7 +15,7 @@ if __name__ == '__main__':
     running = True
 
     while running:
-        user_input = input("You can start the doorbell by typing 1\n"
+        user_input = input("\nYou can start the doorbell by typing 1\n"
                            "You can record a new face by typing 2\n"
                            "You can exit by typing 3\n"
                            "---> ")
@@ -27,7 +27,7 @@ if __name__ == '__main__':
         elif user_input == "2":
             record_faces.record_faces()
             trainer.train_faces()
-            print("Face saved!")
+            print("\nFace saved!")
 
         elif user_input == "3":
             running = False
